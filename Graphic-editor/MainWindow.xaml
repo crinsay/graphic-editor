@@ -60,7 +60,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⚫ Point"
-                        Name="ButtonPoint"/>
+                        Name="ButtonPoint" Click="ButtonPointClick"/>
             </Border>
             <Border Grid.Column="2"
                     Background="#f5f4f7"

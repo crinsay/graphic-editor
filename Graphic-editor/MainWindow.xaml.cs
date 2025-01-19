@@ -9,63 +9,93 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Graphic_editor
+namespace Graphic_editor;
+
+enum  DrawStyle
 {
-    enum  DrawStyle
+    Freestyle,
+    Point
+}
+public partial class MainWindow : Window
+{
+    private Point _currentMouseLocation = new();
+    private DrawStyle _drawStyle = DrawStyle.Freestyle;
+
+    public MainWindow()
     {
-        Freestyle
+        InitializeComponent();
     }
-    public partial class MainWindow : Window
+
+    // --- Changing drawing style ---
+    private void ButtonBrushClick(object sender, RoutedEventArgs e)
     {
-        private Point _currentMouseLocation = new();
-        private DrawStyle _drawStyle = DrawStyle.Freestyle;
+        _drawStyle = DrawStyle.Freestyle;
+    }
+    private void ButtonPointClick(object sender, RoutedEventArgs e)
+    {
+        _drawStyle = DrawStyle.Point;
+    }
 
-        public MainWindow()
+
+    // --- Handling mouse events ---
+    private void paintingSurfaceMouseMove(object sender, MouseEventArgs e)
+    {
+        if (e.LeftButton == MouseButtonState.Pressed && _drawStyle == DrawStyle.Freestyle)
         {
-            InitializeComponent();
+            Brush brushColor = new SolidColorBrush(Colors.Black);
+            Line line = new Line();
+            line.Stroke = brushColor;
+            line.X1 = _currentMouseLocation.X;
+            line.Y1 = _currentMouseLocation.Y;
+            line.X2 = e.GetPosition(paintingSurface).X; 
+            line.Y2 = e.GetPosition(paintingSurface).Y;
+
+            _currentMouseLocation = e.GetPosition(paintingSurface);
+
+            paintingSurface.Children.Add(line);
         }
+        else
+            _currentMouseLocation = e.GetPosition(paintingSurface);
+    }
 
-        //Changing drawStyle
-        private void ButtonBrushClick(object sender, RoutedEventArgs e)
+    private void paintingSurfaceMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        _currentMouseLocation = e.GetPosition(paintingSurface);
+        switch(_drawStyle)
         {
-            _drawStyle = DrawStyle.Freestyle;
-        }
-
-
-        //mouse event handling
-        private void paintingSurfaceMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed && _drawStyle == DrawStyle.Freestyle)
-            {
-                Brush brushColor = new SolidColorBrush(Colors.Black);
-                Line line = new Line();
-                line.Stroke = brushColor;
-                line.X1 = _currentMouseLocation.X;
-                line.Y1 = _currentMouseLocation.Y;
-                line.X2 = e.GetPosition(paintingSurface).X; 
-                line.Y2 = e.GetPosition(paintingSurface).Y;
-
-                _currentMouseLocation = e.GetPosition(paintingSurface);
-
-                paintingSurface.Children.Add(line);
-            }
-            else
-                _currentMouseLocation = e.GetPosition(paintingSurface);
-        }
-
-        private void paintingSurfaceMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void paintingSurfaceMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ButtonState == MouseButtonState.Pressed)
-            {
-                _currentMouseLocation = e.GetPosition(paintingSurface);
-                e.GetPosition(paintingSurface);
-            }
+            case DrawStyle.Point:
+                AddPoint();
+                break;
 
         }
     }
+
+    private void paintingSurfaceMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ButtonState == MouseButtonState.Pressed)
+        {
+            _currentMouseLocation = e.GetPosition(paintingSurface);
+            e.GetPosition(paintingSurface);
+        }
+
+    }
+
+
+    // --- Drawing methods ---
+    private void AddPoint()
+    {
+        Ellipse elipse = new Ellipse();
+        elipse.Width = 6;
+        elipse.Height = 6;
+
+        Canvas.SetTop(elipse, _currentMouseLocation.Y - elipse.Height / 2);
+        Canvas.SetLeft(elipse, _currentMouseLocation.X - elipse.Width / 2);
+
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        elipse.Fill = brushColor;
+
+        paintingSurface.Children.Add(elipse);
+    }
+
+
 }
