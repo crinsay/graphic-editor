@@ -1,0 +1,199 @@
+﻿<Window x:Class="Graphic_editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Graphic_editor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="20px"/>
+            <RowDefinition MaxHeight="40px"/>
+            <RowDefinition Height = "20*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="#e9e8eb">
+            <MenuItem Header="File"
+                      Background="Azure"
+                      >
+                <MenuItem Header="Save as..."/>
+                <MenuItem Header="Import..."/>
+            </MenuItem>
+            <MenuItem Header="Filters">
+                <MenuItem/>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1"
+              Background="#e9e8eb">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>                
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>                
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content=" Brush"
+                        Name="ButtonBrush"/>
+            </Border>
+            <Border Grid.Column="1"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="⚫ Point"
+                        Name="ButtonPoint"/>
+            </Border>
+            <Border Grid.Column="2"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content=" Line"
+                        Name="ButtonStraightLine"/>
+            </Border>
+            <Border Grid.Column="3"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="⧸ Edit line"
+                        Name="ButtonEditStraightLine"/>
+            </Border>
+            <Border Grid.Column="4"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="𐰀 Poly line"
+                        Name="ButtonPolyLine"/>
+            </Border>
+            <Border Grid.Column="5"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="▭ Rectangle"
+                        Name="ButtonRectangle"/>
+            </Border>
+            <Border Grid.Column="6"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="□ Square"
+                        Name="ButtonSquare"/>
+            </Border>
+            <Border Grid.Column="7"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="⬭ Ellipse"
+                        Name="ButtonEllipse"/>
+            </Border>
+            <Border Grid.Column="8"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="⚪ Circle"
+                        Name="ButtonCircle"/>
+            </Border>
+            <Border Grid.Column="9"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="△ Triangle"
+                        Name="ButtonTriangle"/>
+            </Border>
+            <Border Grid.Column="10"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="⬡ Hexagon"
+                        Name="ButtonHexagon"/>
+            </Border>
+            <Border Grid.Column="11"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="✰ Star"
+                        Name="ButtonStar"/>
+            </Border>
+            <Border Grid.Column="12"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol">
+                    <Rectangle Height="20px"
+                               Width="20px"
+                               Margin="2"
+                               Fill="Red"/> 
+                </Button>
+            </Border>
+            
+        </Grid>
+        <Canvas Grid.Row="2"
+                Name="paintingSurface">
+            <Canvas.Background>
+                <SolidColorBrush Color="White"
+                                 Opacity="1"/>
+            </Canvas.Background>
+        </Canvas>
+    </Grid>
+</Window>
