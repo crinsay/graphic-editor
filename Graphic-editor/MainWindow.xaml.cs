@@ -29,23 +29,24 @@ public partial class MainWindow : Window
     // --- Changing drawing style ---
     private void ButtonBrushClick(object sender, RoutedEventArgs e)
     {
-        _drawStyle = DrawStyle.Freestyle;
         RestartValues();
+        _drawStyle = DrawStyle.Freestyle;
     }
     private void ButtonPointClick(object sender, RoutedEventArgs e)
     {
-        _drawStyle = DrawStyle.Point;
         RestartValues();
+        _drawStyle = DrawStyle.Point;
     }
     private void ButtonStraightLineClick(object sender, RoutedEventArgs e)
     {
-        _drawStyle = DrawStyle.StraightLine;
         RestartValues();
+        _drawStyle = DrawStyle.StraightLine;
     }
     private void ButtonEditStraightLineClick(object sender, RoutedEventArgs e)
     {
-        _drawStyle = DrawStyle.EditStraightLine;
         RestartValues();
+        _drawStyle = DrawStyle.EditStraightLine;
+        MakeStraightLinePurple();
     }
     #endregion
 
@@ -203,7 +204,7 @@ public partial class MainWindow : Window
 
     private void RestartValues()
     {
-        _drawStyle = DrawStyle.StraightLine;
+        _startMouseLocation = null;
         MakeStraightLineBlack();
     }
 }
