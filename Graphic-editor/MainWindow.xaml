@@ -49,7 +49,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content=" Brush"
-                        Name="ButtonBrush"/>
+                        Name="ButtonBrush" Click="ButtonBrushClick"/>
             </Border>
             <Border Grid.Column="1"
                     Background="#f5f4f7"
@@ -189,7 +189,7 @@
             
         </Grid>
         <Canvas Grid.Row="2"
-                Name="paintingSurface">
+                Name="paintingSurface" MouseMove="paintingSurfaceMouseMove" MouseLeftButtonDown="paintingSurfaceMouseLeftButtonDown" MouseDown="paintingSurfaceMouseDown">
             <Canvas.Background>
                 <SolidColorBrush Color="White"
                                  Opacity="1"/>
