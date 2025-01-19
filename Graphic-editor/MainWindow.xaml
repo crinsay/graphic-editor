@@ -85,7 +85,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⧸ Edit line"
-                        Name="ButtonEditStraightLine"/>
+                        Name="ButtonEditStraightLine" 
+                        Click="ButtonEditStraightLineClick"/>
             </Border>
             <Border Grid.Column="4"
                     Background="#f5f4f7"
