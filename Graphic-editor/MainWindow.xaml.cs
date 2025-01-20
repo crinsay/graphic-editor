@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using Emgu.CV.Reg;
+using Emgu.CV;
+using Microsoft.Win32;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,6 +8,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Emgu.CV.Structure;
+using Ellipse = System.Windows.Shapes.Ellipse;
+using Color = System.Windows.Media.Color;
+using Image = System.Windows.Controls.Image;
+using Path = System.IO.Path;
+using Point = System.Windows.Point;
 
 namespace Graphic_editor;
 
@@ -30,7 +38,7 @@ public partial class MainWindow : Window
     private Point? _startMouseLocation = null;
     private List<Line> _lines = new();
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
-    private Color _selectedColor = Color.FromRgb(0,0,0);
+    private Color _selectedColor = Color.FromRgb(0, 0, 0);
     private ColorPickerWindow? _colorPickerWindow;
 
     public delegate void ColorChangedHandler(Color newColor);
@@ -44,7 +52,7 @@ public partial class MainWindow : Window
     }
 
     #region ButtonClicks
-    // --- Changing drawing style ---
+    // --- Handling Clicks ---
     private void ButtonBrushClick(object sender, RoutedEventArgs e)
     {
         RestartValues();
@@ -118,6 +126,46 @@ public partial class MainWindow : Window
         {
             _colorPickerWindow.Focus();
         }
+    }
+
+    private void ButtonSaveAsClick(object sender, RoutedEventArgs e)
+    {
+        SaveFileDialog saveFileDialog = new()
+        {
+            Filter = "JPEG Image|*.jpg|PNG Image|*.png",
+            Title = "Save an Image File"
+        };
+
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            Uri newFileUri = new Uri(saveFileDialog.FileName);
+            SaveToFile(newFileUri, PaintingSurface);
+        }
+    }
+
+    private void ButtonImportFileClick(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new()
+        {
+            Filter = "JPEG Image|*.jpg|PNG Image|*.png",
+            Title = "Import an Image File"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            Uri fileUri = new(openFileDialog.FileName);
+            ImportFile(fileUri);
+        }
+    }
+
+    private void ButtonSobelClick(object sender, RoutedEventArgs e)
+    {
+        var tempFileFullPath = Path.Combine(Directory.GetCurrentDirectory(), "SobelFilterImage.jpg");
+        var tempFileUri = new Uri(tempFileFullPath);
+        SaveToFile(tempFileUri, PaintingSurface);
+
+        AddSobelFilter();
+        ImportFile(tempFileUri);
     }
     #endregion
 
@@ -419,7 +467,7 @@ public partial class MainWindow : Window
         star.Stroke = brushColor;
         PaintingSurface.Children.Add(star);
     }
-    
+
     private void AddArrow()
     {
         Polygon arrow = new()
@@ -452,9 +500,24 @@ public partial class MainWindow : Window
     {
         _selectedColor = newColor;
         BorderColorPicker.Background = new SolidColorBrush(newColor);
-        var negativeColor = _selectedColor.GetNativeColorValues();
-        ButtonColorPicker.Foreground = new SolidColorBrush(Color.FromRgb((byte)negativeColor[0], (byte)negativeColor[1], (byte)negativeColor[2]));
+        ButtonColorPicker.Foreground = new SolidColorBrush(Color.FromRgb((byte)(255 - _selectedColor.R), (byte)(255 - _selectedColor.G), (byte)(255 - _selectedColor.B)));
     }
+
+
+    // --- File operations ---
+    private void ImportFile(Uri path)
+    {
+        if (path == null) return;
+        
+        Image image = new();
+        BitmapImage bitmapImage = new();
+        bitmapImage.BeginInit();
+        bitmapImage.UriSource = path;
+        bitmapImage.EndInit();
+        image.Source = bitmapImage;
+        PaintingSurface.Children.Add(image);
+    }
+
 
     private void SaveToFile(Uri path, Canvas surface)
     {
@@ -467,15 +530,15 @@ public partial class MainWindow : Window
         surface.Arrange(new Rect(size));
 
         RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(
-            (int)size.Width, 
-            (int)size.Height, 
-            96d, 
-            96d, 
+            (int)size.Width,
+            (int)size.Height,
+            96d,
+            96d,
             PixelFormats.Pbgra32);
 
         renderTargetBitmap.Render(surface);
 
-        using(FileStream outStream = new(path.LocalPath, FileMode.Create))
+        using (FileStream outStream = new(path.LocalPath, FileMode.Create))
         {
             PngBitmapEncoder encoder = new();
             encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
@@ -485,18 +548,17 @@ public partial class MainWindow : Window
         surface.LayoutTransform = transform;
     }
 
-    private void ButtonSaveAsClick(object sender, RoutedEventArgs e)
-    {
-        SaveFileDialog saveFileDialog = new()
-        {
-            Filter = "JPEG Image|*.jpg|PNG Image|*.png",
-            Title = "Save an Image File"
-        };
 
-        if (saveFileDialog.ShowDialog() == true)
-        {
-            Uri newFileUri = new Uri(saveFileDialog.FileName);
-            SaveToFile(newFileUri, PaintingSurface);
-        }
+    // --- Filters ---
+    private void AddSobelFilter()
+    {
+        const string temporaryFile = "SobelFilterImage.jpg";
+        var image = new Image<Rgb, byte>(temporaryFile);
+        var grayImage = image.Convert<Gray, byte>();
+        var graySobelImage = grayImage.Sobel(0, 1, 3);
+        graySobelImage.Save("SobelFilterImage.jpg");
     }
+
+
+
 }

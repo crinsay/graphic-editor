@@ -19,10 +19,14 @@
                 <MenuItem Header="Save as..."
                           Name="ButtonSaveAs" 
                           Click="ButtonSaveAsClick"/>
-                <MenuItem Header="Import..."/>
+                <MenuItem Header="Import..."
+                          Name="ButtonImportFile" 
+                          Click="ButtonImportFileClick"/>
             </MenuItem>
             <MenuItem Header="Filters">
-                <MenuItem/>
+                <MenuItem Header="Sobel"
+                          Name="ButtonSobel"
+                          Click="ButtonSobelClick"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"
