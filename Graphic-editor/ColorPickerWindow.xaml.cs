@@ -19,6 +19,7 @@ namespace Graphic_editor;
 public partial class ColorPickerWindow : Window, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
+    public event Action<Color>? ColorUpdated;
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -37,8 +38,8 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
                 _r = value;
                 if (byte.TryParse(_r, out byte rValue))
                 {
-                    _currentColor.R = rValue; 
-                    UpdateBorderColor(); 
+                    _currentColor.R = rValue;
+                    UpdateBorderColor();
                 }
                 OnPropertyChanged();
             }
@@ -98,12 +99,13 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
 
     private void ButtonCancelClick(object sender, RoutedEventArgs e)
     {
-
+        this.Close();
     }
 
     private void ButtonOKClick(object sender, RoutedEventArgs e)
     {
-
+        ColorUpdated?.Invoke(_currentColor);
+        this.Close();
     }
 
     private void TextBoxRGB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)

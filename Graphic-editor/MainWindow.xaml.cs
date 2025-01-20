@@ -29,6 +29,12 @@ public partial class MainWindow : Window
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
     private Color _selectedColor = Color.FromRgb(0,0,0);
     private ColorPickerWindow? _colorPickerWindow;
+
+    public delegate void ColorChangedHandler(Color newColor);
+    public event ColorChangedHandler OnColorChanged = delegate { };
+
+
+
     public MainWindow()
     {
         InitializeComponent();
@@ -99,9 +105,16 @@ public partial class MainWindow : Window
     }
     private void ButtonColorPickerClick(object sender, RoutedEventArgs e)
     {
-        _colorPickerWindow = new ColorPickerWindow(_selectedColor);
-
-        _colorPickerWindow.Show();
+        if (_colorPickerWindow == null || !_colorPickerWindow.IsLoaded)
+        {
+            _colorPickerWindow = new ColorPickerWindow(_selectedColor);
+            _colorPickerWindow.ColorUpdated += ColorPickerWindow_ColorUpdated; // Subskrypcja zdarzenia
+            _colorPickerWindow.Show();
+        }
+        else
+        {
+            _colorPickerWindow.Focus();
+        }
     }
     #endregion
 
@@ -430,6 +443,12 @@ public partial class MainWindow : Window
     {
         _startMouseLocation = null;
         MakeStraightLineBlack();
+    }
+
+    private void ColorPickerWindow_ColorUpdated(Color newColor)
+    {
+        _selectedColor = newColor;
+        BorderColorPicker.Background = new SolidColorBrush(newColor);
     }
 
     private void UpdateColor()
