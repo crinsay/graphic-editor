@@ -107,43 +107,10 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="▭ Rectangle"
-                        Name="ButtonRectangle"/>
-            </Border>
-            <Border Grid.Column="6"
-                    Background="#f5f4f7"
-                    CornerRadius="5"
-                    Margin="3">
-                <Button Grid.Column="0"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        FontFamily="Segoe UI Symbol"
-                        Content="□ Square"
-                        Name="ButtonSquare"/>
-            </Border>
-            <Border Grid.Column="7"
-                    Background="#f5f4f7"
-                    CornerRadius="5"
-                    Margin="3">
-                <Button Grid.Column="0"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        FontFamily="Segoe UI Symbol"
-                        Content="⬭ Ellipse"
-                        Name="ButtonEllipse"/>
-            </Border>
-            <Border Grid.Column="8"
-                    Background="#f5f4f7"
-                    CornerRadius="5"
-                    Margin="3">
-                <Button Grid.Column="0"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        FontFamily="Segoe UI Symbol"
                         Content="⚪ Circle"
                         Name="ButtonCircle"/>
             </Border>
-            <Border Grid.Column="9"
+            <Border Grid.Column="6"
                     Background="#f5f4f7"
                     CornerRadius="5"
                     Margin="3">
@@ -154,7 +121,29 @@
                         Content="△ Triangle"
                         Name="ButtonTriangle"/>
             </Border>
-            <Border Grid.Column="10"
+            <Border Grid.Column="7"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="□ Square"
+                        Name="ButtonSquare"/>
+            </Border>
+            <Border Grid.Column="8"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="⬠ Pentagon"
+                        Name ="ButtonPentagon"/>
+            </Border>
+            <Border Grid.Column="9"
                     Background="#f5f4f7"
                     CornerRadius="5"
                     Margin="3">
@@ -165,7 +154,7 @@
                         Content="⬡ Hexagon"
                         Name="ButtonHexagon"/>
             </Border>
-            <Border Grid.Column="11"
+            <Border Grid.Column="10"
                     Background="#f5f4f7"
                     CornerRadius="5"
                     Margin="3">
@@ -175,6 +164,17 @@
                         FontFamily="Segoe UI Symbol"
                         Content="✰ Star"
                         Name="ButtonStar"/>
+            </Border>
+            <Border Grid.Column="11"
+                    Background="#f5f4f7"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Grid.Column="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Content="➩ Arrow"
+                        Name="ButtonArrow"/>
             </Border>
             <Border Grid.Column="12"
                     Background="#f5f4f7"
