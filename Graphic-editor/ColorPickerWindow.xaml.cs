@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Graphic_editor
 {
-    /// <summary>
-    /// Interaction logic for ColorPickerWindow.xaml
-    /// </summary>
     public partial class ColorPickerWindow : Window
     {
         public ColorPickerWindow()
@@ -36,21 +33,13 @@ namespace Graphic_editor
 
         private void TextBoxRGB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            e.Handled = !IsDigit(e.Text);
+            var textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                string inputText = textBox.Text + e.Text;
+                e.Handled = IsCorrect(inputText);
+            }
         }
-        private void TextBoxH_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            e.Handled = !IsDigit(e.Text);
-        }
-        private void TextBoxSV_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            e.Handled = !IsDigit(e.Text);
-        }
-
-        // Metoda sprawdzająca, czy tekst zawiera dozwolone znaki
-        private static bool IsDigit(string text)
-        {
-            return text.All(char.IsDigit);
-        }
+        private static bool IsCorrect(string text) => !(text.All(char.IsDigit) && int.Parse(text) <= 255);
     }
 }

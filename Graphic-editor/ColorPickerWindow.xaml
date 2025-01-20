@@ -115,8 +115,7 @@
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
                      MaxLength="3"
-                     IsEnabled="False"
-                     PreviewTextInput="TextBoxH_PreviewTextInput"/>
+                     IsEnabled="False"/>
         </Border>
         <Border Grid.Row="5"
                 Grid.Column="4"
@@ -129,8 +128,7 @@
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
                      MaxLength="3"
-                     IsEnabled="False"
-                     PreviewTextInput="TextBoxSV_PreviewTextInput"/>
+                     IsEnabled="False"/>
         </Border>
         <Border Grid.Row="7"
                 Grid.Column="4"
@@ -143,8 +141,7 @@
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
                      MaxLength="3"
-                     IsEnabled="False"
-                     PreviewTextInput="TextBoxSV_PreviewTextInput"/>
+                     IsEnabled="False"/>
         </Border>
 
         <Border Grid.Row="3"
