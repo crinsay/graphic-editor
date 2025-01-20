@@ -121,7 +121,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="△ Triangle"
-                        Name="ButtonTriangle"/>
+                        Name="ButtonTriangle" Click="ButtonTriangleClick"/>
             </Border>
             <Border Grid.Column="7"
                     Background="#f5f4f7"

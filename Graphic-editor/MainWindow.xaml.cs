@@ -13,7 +13,8 @@ enum DrawStyle
     StraightLine,
     EditStraightLine,
     PolyLine,
-    Circle
+    Circle,
+    Triangle
 }
 public partial class MainWindow : Window
 {
@@ -59,6 +60,11 @@ public partial class MainWindow : Window
     {
         RestartValues();
         _drawStyle = DrawStyle.Circle;
+    }
+    private void ButtonTriangleClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Triangle;
     }
     #endregion
 
@@ -106,6 +112,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.Circle:
                 AddCircle();
+                break;
+            case DrawStyle.Triangle:
+                AddTriangle();
                 break;
 
         }
@@ -246,14 +255,29 @@ public partial class MainWindow : Window
     {
         Ellipse elipse = new()
         {
-            Width = 50,
-            Height = 50
+            Width = 100,
+            Height = 100
         };
         Canvas.SetTop(elipse, _currentMouseLocation.Y - elipse.Height / 2);
         Canvas.SetLeft(elipse, _currentMouseLocation.X - elipse.Width / 2);
         Brush brushColor = new SolidColorBrush(Colors.Black);
         elipse.Stroke = brushColor;
         PaintingSurface.Children.Add(elipse);
+    }
+    private void AddTriangle()
+    {
+        Polygon triangle = new()
+        {
+            Points =
+            [
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y - 50),
+                new Point(_currentMouseLocation.X - 50, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y + 50)
+            ]
+        };
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        triangle.Stroke = brushColor;
+        PaintingSurface.Children.Add(triangle);
     }
     #endregion
 
@@ -262,4 +286,6 @@ public partial class MainWindow : Window
         _startMouseLocation = null;
         MakeStraightLineBlack();
     }
+
+
 }
