@@ -18,7 +18,8 @@ enum DrawStyle
     Square,
     Pentagon,
     Hexagon,
-    Star
+    Star,
+    Arrow
 }
 public partial class MainWindow : Window
 {
@@ -90,6 +91,11 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.Star;
     }
+    private void ButtonArrowClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Arrow;
+    }
     #endregion
 
 
@@ -151,6 +157,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.Star:
                 AddStar();
+                break;
+            case DrawStyle.Arrow:
+                AddArrow();
                 break;
         }
     }
@@ -387,6 +396,26 @@ public partial class MainWindow : Window
         star.Stroke = brushColor;
         PaintingSurface.Children.Add(star);
     }
+    
+    private void AddArrow()
+    {
+        Polygon arrow = new()
+        {
+            Points =
+            [
+                new Point(_currentMouseLocation.X - 50, _currentMouseLocation.Y +25),
+                new Point(_currentMouseLocation.X - 50, _currentMouseLocation.Y - 25),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y - 25),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y - 50),
+                new Point(_currentMouseLocation.X + 100, _currentMouseLocation.Y),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y + 25)
+            ]
+        };
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        arrow.Stroke = brushColor;
+        PaintingSurface.Children.Add(arrow);
+    }
 
     #endregion
 
@@ -395,5 +424,6 @@ public partial class MainWindow : Window
         _startMouseLocation = null;
         MakeStraightLineBlack();
     }
+
 
 }

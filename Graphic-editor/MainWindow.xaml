@@ -181,7 +181,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="➩ Arrow"
-                        Name="ButtonArrow"/>
+                        Name="ButtonArrow" Click="ButtonArrowClick"/>
             </Border>
             <Border Grid.Column="12"
                     Background="#f5f4f7"
