@@ -181,20 +181,22 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="➩ Arrow"
-                        Name="ButtonArrow" Click="ButtonArrowClick"/>
+                        Name="ButtonArrow" 
+                        Click="ButtonArrowClick"/>
             </Border>
             <Border Grid.Column="12"
-                    Background="#f5f4f7"
+                    Background="Black"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="3"
+                    Name="BorderColorPicker">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
-                        FontFamily="Segoe UI Symbol">
-                    <Rectangle Height="20px"
-                               Width="20px"
-                               Margin="2"
-                               Fill="Red"/> 
+                        FontFamily="Segoe UI Symbol"
+                        Name="ButtonColorPicker"
+                        Content="Color"
+                        Foreground="White" 
+                        Click="ButtonColorPickerClick">
                 </Button>
             </Border>
             

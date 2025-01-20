@@ -27,6 +27,13 @@ public partial class MainWindow : Window
     private Point? _startMouseLocation = null;
     private List<Line> _lines = new();
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
+    private Color _selectedColor = Color.FromRgb(0,0,0);
+    private ColorPickerWindow? _colorPickerWindow;
+
+    public delegate void ColorChangedHandler(Color newColor);
+    public event ColorChangedHandler OnColorChanged = delegate { };
+
+
 
     public MainWindow()
     {
@@ -96,6 +103,19 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.Arrow;
     }
+    private void ButtonColorPickerClick(object sender, RoutedEventArgs e)
+    {
+        if (_colorPickerWindow == null || !_colorPickerWindow.IsLoaded)
+        {
+            _colorPickerWindow = new ColorPickerWindow(_selectedColor);
+            _colorPickerWindow.ColorUpdated += ColorPickerWindow_ColorUpdated; // Subskrypcja zdarzenia
+            _colorPickerWindow.Show();
+        }
+        else
+        {
+            _colorPickerWindow.Focus();
+        }
+    }
     #endregion
 
 
@@ -105,7 +125,7 @@ public partial class MainWindow : Window
     {
         if (e.LeftButton == MouseButtonState.Pressed && _drawStyle == DrawStyle.Freestyle)
         {
-            Brush brushColor = new SolidColorBrush(Colors.Black);
+            Brush brushColor = new SolidColorBrush(_selectedColor);
             Line line = new()
             {
                 Stroke = brushColor,
@@ -188,7 +208,7 @@ public partial class MainWindow : Window
         Canvas.SetTop(elipse, _currentMouseLocation.Y - elipse.Height / 2);
         Canvas.SetLeft(elipse, _currentMouseLocation.X - elipse.Width / 2);
 
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         elipse.Fill = brushColor;
 
         PaintingSurface.Children.Add(elipse);
@@ -202,7 +222,7 @@ public partial class MainWindow : Window
         }
         else
         {
-            Brush brushColor = new SolidColorBrush(Colors.Black);
+            Brush brushColor = new SolidColorBrush(_selectedColor);
             Line line = new()
             {
                 Stroke = brushColor,
@@ -230,7 +250,7 @@ public partial class MainWindow : Window
     {
         foreach (Line line in _lines)
         {
-            line.Stroke = new SolidColorBrush(Colors.Black);
+            line.Stroke = new SolidColorBrush(_selectedColor);
         }
     }
 
@@ -280,7 +300,7 @@ public partial class MainWindow : Window
         }
         else
         {
-            Brush brushColor = new SolidColorBrush(Colors.Black);
+            Brush brushColor = new SolidColorBrush(_selectedColor);
             Line line = new()
             {
                 Stroke = brushColor,
@@ -304,7 +324,7 @@ public partial class MainWindow : Window
         };
         Canvas.SetTop(elipse, _currentMouseLocation.Y - elipse.Height / 2);
         Canvas.SetLeft(elipse, _currentMouseLocation.X - elipse.Width / 2);
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         elipse.Stroke = brushColor;
         PaintingSurface.Children.Add(elipse);
     }
@@ -319,7 +339,7 @@ public partial class MainWindow : Window
                 new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y + 50)
             ]
         };
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         triangle.Stroke = brushColor;
         PaintingSurface.Children.Add(triangle);
     }
@@ -332,7 +352,7 @@ public partial class MainWindow : Window
         };
         Canvas.SetTop(square, _currentMouseLocation.Y - square.Height / 2);
         Canvas.SetLeft(square, _currentMouseLocation.X - square.Width / 2);
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         square.Stroke = brushColor;
         PaintingSurface.Children.Add(square);
     }
@@ -350,7 +370,7 @@ public partial class MainWindow : Window
                 new Point(_currentMouseLocation.X + 48, _currentMouseLocation.Y - 15)
             ]
         };
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         pentagon.Stroke = brushColor;
         PaintingSurface.Children.Add(pentagon);
     }
@@ -369,7 +389,7 @@ public partial class MainWindow : Window
                 new Point(_currentMouseLocation.X - 43, _currentMouseLocation.Y - 25)
             ]
         };
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         hexagon.Stroke = brushColor;
         PaintingSurface.Children.Add(hexagon);
     }
@@ -392,7 +412,7 @@ public partial class MainWindow : Window
                 new Point(_currentMouseLocation.X - 15, _currentMouseLocation.Y - 15)
             ]
         };
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         star.Stroke = brushColor;
         PaintingSurface.Children.Add(star);
     }
@@ -412,7 +432,7 @@ public partial class MainWindow : Window
                 new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y + 25)
             ]
         };
-        Brush brushColor = new SolidColorBrush(Colors.Black);
+        Brush brushColor = new SolidColorBrush(_selectedColor);
         arrow.Stroke = brushColor;
         PaintingSurface.Children.Add(arrow);
     }
@@ -423,6 +443,19 @@ public partial class MainWindow : Window
     {
         _startMouseLocation = null;
         MakeStraightLineBlack();
+    }
+
+    private void ColorPickerWindow_ColorUpdated(Color newColor)
+    {
+        _selectedColor = newColor;
+        BorderColorPicker.Background = new SolidColorBrush(newColor);
+    }
+
+    private void UpdateColor()
+    {
+        BorderColorPicker.Background = new SolidColorBrush(_selectedColor);
+        var negativeColor = _selectedColor.GetNativeColorValues();
+        ButtonColorPicker.Foreground = new SolidColorBrush(Color.FromRgb((byte)negativeColor[0], (byte)negativeColor[1], (byte)negativeColor[2]));
     }
 
 
