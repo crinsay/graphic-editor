@@ -13,6 +13,7 @@ enum DrawStyle
     StraightLine,
     EditStraightLine,
     PolyLine,
+    Circle
 }
 public partial class MainWindow : Window
 {
@@ -53,6 +54,11 @@ public partial class MainWindow : Window
     {
         RestartValues();
         _drawStyle = DrawStyle.PolyLine;
+    }
+    private void ButtonCircleClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Circle;
     }
     #endregion
 
@@ -97,6 +103,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.PolyLine:
                 AddPolyLine();
+                break;
+            case DrawStyle.Circle:
+                AddCircle();
                 break;
 
         }
@@ -232,6 +241,20 @@ public partial class MainWindow : Window
             _startMouseLocation = _currentMouseLocation;
         }
     }
+
+    private void AddCircle()
+    {
+        Ellipse elipse = new()
+        {
+            Width = 50,
+            Height = 50
+        };
+        Canvas.SetTop(elipse, _currentMouseLocation.Y - elipse.Height / 2);
+        Canvas.SetLeft(elipse, _currentMouseLocation.X - elipse.Width / 2);
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        elipse.Stroke = brushColor;
+        PaintingSurface.Children.Add(elipse);
+    }
     #endregion
 
     private void RestartValues()
@@ -239,5 +262,4 @@ public partial class MainWindow : Window
         _startMouseLocation = null;
         MakeStraightLineBlack();
     }
-
 }

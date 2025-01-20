@@ -97,7 +97,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="𐰀 Poly line"
-                        Name="ButtonPolyLine" Click="ButtonPolyLineClick"/>
+                        Name="ButtonPolyLine" 
+                        Click="ButtonPolyLineClick"/>
             </Border>
             <Border Grid.Column="5"
                     Background="#f5f4f7"
@@ -108,7 +109,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⚪ Circle"
-                        Name="ButtonCircle"/>
+                        Name="ButtonCircle"
+                        Click="ButtonCircleClick"/>
             </Border>
             <Border Grid.Column="6"
                     Background="#f5f4f7"
