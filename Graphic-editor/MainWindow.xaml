@@ -16,7 +16,9 @@
             <MenuItem Header="File"
                       Background="Azure"
                       >
-                <MenuItem Header="Save as..."/>
+                <MenuItem Header="Save as..."
+                          Name="ButtonSaveAs" 
+                          Click="ButtonSaveAsClick"/>
                 <MenuItem Header="Import..."/>
             </MenuItem>
             <MenuItem Header="Filters">

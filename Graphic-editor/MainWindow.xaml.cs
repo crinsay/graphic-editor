@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using Microsoft.Win32;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Graphic_editor;
@@ -449,14 +452,51 @@ public partial class MainWindow : Window
     {
         _selectedColor = newColor;
         BorderColorPicker.Background = new SolidColorBrush(newColor);
-    }
-
-    private void UpdateColor()
-    {
-        BorderColorPicker.Background = new SolidColorBrush(_selectedColor);
         var negativeColor = _selectedColor.GetNativeColorValues();
         ButtonColorPicker.Foreground = new SolidColorBrush(Color.FromRgb((byte)negativeColor[0], (byte)negativeColor[1], (byte)negativeColor[2]));
     }
 
+    private void SaveToFile(Uri path, Canvas surface)
+    {
+        if (path == null) return;
 
+        Transform transform = surface.LayoutTransform;
+        Size size = new(surface.ActualWidth, surface.ActualHeight);
+
+        surface.Measure(size);
+        surface.Arrange(new Rect(size));
+
+        RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(
+            (int)size.Width, 
+            (int)size.Height, 
+            96d, 
+            96d, 
+            PixelFormats.Pbgra32);
+
+        renderTargetBitmap.Render(surface);
+
+        using(FileStream outStream = new(path.LocalPath, FileMode.Create))
+        {
+            PngBitmapEncoder encoder = new();
+            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+            encoder.Save(outStream);
+        }
+
+        surface.LayoutTransform = transform;
+    }
+
+    private void ButtonSaveAsClick(object sender, RoutedEventArgs e)
+    {
+        SaveFileDialog saveFileDialog = new()
+        {
+            Filter = "JPEG Image|*.jpg|PNG Image|*.png",
+            Title = "Save an Image File"
+        };
+
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            Uri newFileUri = new Uri(saveFileDialog.FileName);
+            SaveToFile(newFileUri, PaintingSurface);
+        }
+    }
 }
