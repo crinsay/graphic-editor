@@ -27,6 +27,9 @@
                 <MenuItem Header="Sobel"
                           Name="ButtonSobel"
                           Click="ButtonSobelClick"/>
+                <MenuItem Header="Matrix"
+                          Name="ButtonMatrix"
+                          Click="ButtonMatrixClick"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"

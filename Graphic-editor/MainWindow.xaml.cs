@@ -559,6 +559,8 @@ public partial class MainWindow : Window
         graySobelImage.Save("SobelFilterImage.jpg");
     }
 
+    private void ButtonMatrixClick(object sender, RoutedEventArgs e)
+    {
 
-
+    }
 }
