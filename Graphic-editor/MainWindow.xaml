@@ -49,7 +49,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content=" Brush"
-                        Name="ButtonBrush"/>
+                        Name="ButtonBrush" 
+                        Click="ButtonBrushClick"/>
             </Border>
             <Border Grid.Column="1"
                     Background="#f5f4f7"
@@ -60,7 +61,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⚫ Point"
-                        Name="ButtonPoint"/>
+                        Name="ButtonPoint" 
+                        Click="ButtonPointClick"/>
             </Border>
             <Border Grid.Column="2"
                     Background="#f5f4f7"
@@ -71,7 +73,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content=" Line"
-                        Name="ButtonStraightLine"/>
+                        Name="ButtonStraightLine" 
+                        Click="ButtonStraightLineClick"/>
             </Border>
             <Border Grid.Column="3"
                     Background="#f5f4f7"
@@ -81,8 +84,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="⧸ Edit line"
-                        Name="ButtonEditStraightLine"/>
+                        Content="⧸ Edit lines"
+                        Name="ButtonEditStraightLine" 
+                        Click="ButtonEditStraightLineClick"/>
             </Border>
             <Border Grid.Column="4"
                     Background="#f5f4f7"
@@ -93,7 +97,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="𐰀 Poly line"
-                        Name="ButtonPolyLine"/>
+                        Name="ButtonPolyLine" 
+                        Click="ButtonPolyLineClick"/>
             </Border>
             <Border Grid.Column="5"
                     Background="#f5f4f7"
@@ -103,8 +108,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="▭ Rectangle"
-                        Name="ButtonRectangle"/>
+                        Content="⚪ Circle"
+                        Name="ButtonCircle"
+                        Click="ButtonCircleClick"/>
             </Border>
             <Border Grid.Column="6"
                     Background="#f5f4f7"
@@ -114,8 +120,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="□ Square"
-                        Name="ButtonSquare"/>
+                        Content="△ Triangle"
+                        Name="ButtonTriangle" 
+                        Click="ButtonTriangleClick"/>
             </Border>
             <Border Grid.Column="7"
                     Background="#f5f4f7"
@@ -125,8 +132,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="⬭ Ellipse"
-                        Name="ButtonEllipse"/>
+                        Content="□ Square"
+                        Name="ButtonSquare" 
+                        Click="ButtonSquareClick"/>
             </Border>
             <Border Grid.Column="8"
                     Background="#f5f4f7"
@@ -136,8 +144,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="⚪ Circle"
-                        Name="ButtonCircle"/>
+                        Content="⬠ Pentagon"
+                        Name ="ButtonPentagon" 
+                        Click="ButtonPentagonClick"/>
             </Border>
             <Border Grid.Column="9"
                     Background="#f5f4f7"
@@ -147,8 +156,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="△ Triangle"
-                        Name="ButtonTriangle"/>
+                        Content="⬡ Hexagon"
+                        Name="ButtonHexagon" 
+                        Click="ButtonHexagonClick"/>
             </Border>
             <Border Grid.Column="10"
                     Background="#f5f4f7"
@@ -158,8 +168,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="⬡ Hexagon"
-                        Name="ButtonHexagon"/>
+                        Content="✰ Star"
+                        Name="ButtonStar" 
+                        Click="ButtonStarClick"/>
             </Border>
             <Border Grid.Column="11"
                     Background="#f5f4f7"
@@ -169,8 +180,8 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="✰ Star"
-                        Name="ButtonStar"/>
+                        Content="➩ Arrow"
+                        Name="ButtonArrow" Click="ButtonArrowClick"/>
             </Border>
             <Border Grid.Column="12"
                     Background="#f5f4f7"
@@ -189,7 +200,10 @@
             
         </Grid>
         <Canvas Grid.Row="2"
-                Name="paintingSurface">
+                Name="PaintingSurface" 
+                MouseMove="PaintingSurfaceMouseMove" 
+                MouseLeftButtonDown="PaintingSurfaceMouseLeftButtonDown" 
+                MouseDown="PaintingSurfaceMouseDown">
             <Canvas.Background>
                 <SolidColorBrush Color="White"
                                  Opacity="1"/>
