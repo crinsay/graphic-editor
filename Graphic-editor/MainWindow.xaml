@@ -16,11 +16,20 @@
             <MenuItem Header="File"
                       Background="Azure"
                       >
-                <MenuItem Header="Save as..."/>
-                <MenuItem Header="Import..."/>
+                <MenuItem Header="Save as..."
+                          Name="ButtonSaveAs" 
+                          Click="ButtonSaveAsClick"/>
+                <MenuItem Header="Import..."
+                          Name="ButtonImportFile" 
+                          Click="ButtonImportFileClick"/>
             </MenuItem>
             <MenuItem Header="Filters">
-                <MenuItem/>
+                <MenuItem Header="Sobel"
+                          Name="ButtonSobel"
+                          Click="ButtonSobelClick"/>
+                <MenuItem Header="Matrix"
+                          Name="ButtonMatrix"
+                          Click="ButtonMatrixClick"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"
