@@ -154,7 +154,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⬡ Hexagon"
-                        Name="ButtonHexagon"/>
+                        Name="ButtonHexagon" Click="ButtonHexagonClick"/>
             </Border>
             <Border Grid.Column="10"
                     Background="#f5f4f7"

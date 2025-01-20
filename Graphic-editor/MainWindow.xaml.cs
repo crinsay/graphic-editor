@@ -16,7 +16,8 @@ enum DrawStyle
     Circle,
     Triangle,
     Square,
-    Pentagon
+    Pentagon,
+    Hexagon
 }
 public partial class MainWindow : Window
 {
@@ -78,6 +79,11 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.Pentagon;
     }
+    private void ButtonHexagonClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Hexagon;
+    }
     #endregion
 
 
@@ -133,6 +139,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.Pentagon:
                 AddPentagon();
+                break;
+            case DrawStyle.Hexagon:
+                AddHexagon();
                 break;
 
         }
@@ -317,16 +326,35 @@ public partial class MainWindow : Window
         {
             Points =
             [
-                new Point(_currentMouseLocation.X, _currentMouseLocation.Y - 48),
-                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y),
-                new Point(_currentMouseLocation.X + 25, _currentMouseLocation.Y + 50),
-                new Point(_currentMouseLocation.X - 25, _currentMouseLocation.Y + 50),
-                new Point(_currentMouseLocation.X - 50, _currentMouseLocation.Y)
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y - 50),
+                new Point(_currentMouseLocation.X - 48, _currentMouseLocation.Y - 15),
+                new Point(_currentMouseLocation.X - 29, _currentMouseLocation.Y + 40),
+                new Point(_currentMouseLocation.X + 29, _currentMouseLocation.Y + 40),
+                new Point(_currentMouseLocation.X + 48, _currentMouseLocation.Y - 15)
             ]
         };
         Brush brushColor = new SolidColorBrush(Colors.Black);
         pentagon.Stroke = brushColor;
         PaintingSurface.Children.Add(pentagon);
+    }
+
+    private void AddHexagon()
+    {
+        Polygon hexagon = new()
+        {
+            Points =
+            [
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y - 50),
+                new Point(_currentMouseLocation.X + 43, _currentMouseLocation.Y - 25),
+                new Point(_currentMouseLocation.X + 43, _currentMouseLocation.Y + 25),
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X - 43, _currentMouseLocation.Y + 25),
+                new Point(_currentMouseLocation.X - 43, _currentMouseLocation.Y - 25)
+            ]
+        };
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        hexagon.Stroke = brushColor;
+        PaintingSurface.Children.Add(hexagon);
     }
     #endregion
 
