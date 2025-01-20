@@ -27,7 +27,7 @@ public partial class MainWindow : Window
     private Point? _startMouseLocation = null;
     private List<Line> _lines = new();
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
-    private Color _selectedColor = Color.FromRgb(255,255,255);
+    private Color _selectedColor = Color.FromRgb(0,0,0);
     private ColorPickerWindow? _colorPickerWindow;
     public MainWindow()
     {
@@ -99,7 +99,7 @@ public partial class MainWindow : Window
     }
     private void ButtonColorPickerClick(object sender, RoutedEventArgs e)
     {
-        _colorPickerWindow = new ColorPickerWindow();
+        _colorPickerWindow = new ColorPickerWindow(_selectedColor);
 
         _colorPickerWindow.Show();
     }

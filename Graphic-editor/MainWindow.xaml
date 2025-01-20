@@ -181,7 +181,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="➩ Arrow"
-                        Name="ButtonArrow" Click="ButtonArrowClick"/>
+                        Name="ButtonArrow" 
+                        Click="ButtonArrowClick"/>
             </Border>
             <Border Grid.Column="12"
                     Background="Black"
@@ -194,7 +195,8 @@
                         FontFamily="Segoe UI Symbol"
                         Name="ButtonColorPicker"
                         Content="Color"
-                        Foreground="White" Click="ButtonColorPickerClick">
+                        Foreground="White" 
+                        Click="ButtonColorPickerClick">
                 </Button>
             </Border>
             
