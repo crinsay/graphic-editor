@@ -17,7 +17,8 @@ enum DrawStyle
     Triangle,
     Square,
     Pentagon,
-    Hexagon
+    Hexagon,
+    Star
 }
 public partial class MainWindow : Window
 {
@@ -84,6 +85,11 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.Hexagon;
     }
+    private void ButtonStarClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Star;
+    }
     #endregion
 
 
@@ -143,7 +149,9 @@ public partial class MainWindow : Window
             case DrawStyle.Hexagon:
                 AddHexagon();
                 break;
-
+            case DrawStyle.Star:
+                AddStar();
+                break;
         }
     }
 
@@ -204,14 +212,14 @@ public partial class MainWindow : Window
 
     private void MakeStraightLinePurple()
     {
-        foreach(Line line in _lines)
+        foreach (Line line in _lines)
         {
             line.Stroke = new SolidColorBrush(Colors.Purple);
         }
     }
     private void MakeStraightLineBlack()
     {
-        foreach(Line line in _lines)
+        foreach (Line line in _lines)
         {
             line.Stroke = new SolidColorBrush(Colors.Black);
         }
@@ -356,6 +364,30 @@ public partial class MainWindow : Window
         hexagon.Stroke = brushColor;
         PaintingSurface.Children.Add(hexagon);
     }
+
+    private void AddStar()
+    {
+        Polygon star = new()
+        {
+            Points =
+            [
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y - 50),
+                new Point(_currentMouseLocation.X + 15, _currentMouseLocation.Y - 15),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y - 15),
+                new Point(_currentMouseLocation.X + 20, _currentMouseLocation.Y + 10),
+                new Point(_currentMouseLocation.X + 35, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y + 25),
+                new Point(_currentMouseLocation.X - 35, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X - 20, _currentMouseLocation.Y + 10),
+                new Point(_currentMouseLocation.X - 50, _currentMouseLocation.Y - 15),
+                new Point(_currentMouseLocation.X - 15, _currentMouseLocation.Y - 15)
+            ]
+        };
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        star.Stroke = brushColor;
+        PaintingSurface.Children.Add(star);
+    }
+
     #endregion
 
     private void RestartValues()

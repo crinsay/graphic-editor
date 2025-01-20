@@ -84,7 +84,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="⧸ Edit line"
+                        Content="⧸ Edit lines"
                         Name="ButtonEditStraightLine" 
                         Click="ButtonEditStraightLineClick"/>
             </Border>
@@ -121,7 +121,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="△ Triangle"
-                        Name="ButtonTriangle" Click="ButtonTriangleClick"/>
+                        Name="ButtonTriangle" 
+                        Click="ButtonTriangleClick"/>
             </Border>
             <Border Grid.Column="7"
                     Background="#f5f4f7"
@@ -132,7 +133,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="□ Square"
-                        Name="ButtonSquare" Click="ButtonSquareClick"/>
+                        Name="ButtonSquare" 
+                        Click="ButtonSquareClick"/>
             </Border>
             <Border Grid.Column="8"
                     Background="#f5f4f7"
@@ -143,7 +145,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⬠ Pentagon"
-                        Name ="ButtonPentagon" Click="ButtonPentagonClick"/>
+                        Name ="ButtonPentagon" 
+                        Click="ButtonPentagonClick"/>
             </Border>
             <Border Grid.Column="9"
                     Background="#f5f4f7"
@@ -154,7 +157,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⬡ Hexagon"
-                        Name="ButtonHexagon" Click="ButtonHexagonClick"/>
+                        Name="ButtonHexagon" 
+                        Click="ButtonHexagonClick"/>
             </Border>
             <Border Grid.Column="10"
                     Background="#f5f4f7"
@@ -165,7 +169,8 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="✰ Star"
-                        Name="ButtonStar"/>
+                        Name="ButtonStar" 
+                        Click="ButtonStarClick"/>
             </Border>
             <Border Grid.Column="11"
                     Background="#f5f4f7"
