@@ -14,7 +14,9 @@ enum DrawStyle
     EditStraightLine,
     PolyLine,
     Circle,
-    Triangle
+    Triangle,
+    Square,
+    Pentagon
 }
 public partial class MainWindow : Window
 {
@@ -66,6 +68,16 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.Triangle;
     }
+    private void ButtonSquareClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Square;
+    }
+    private void ButtonPentagonClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Pentagon;
+    }
     #endregion
 
 
@@ -115,6 +127,12 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.Triangle:
                 AddTriangle();
+                break;
+            case DrawStyle.Square:
+                AddSquare();
+                break;
+            case DrawStyle.Pentagon:
+                AddPentagon();
                 break;
 
         }
@@ -279,6 +297,37 @@ public partial class MainWindow : Window
         triangle.Stroke = brushColor;
         PaintingSurface.Children.Add(triangle);
     }
+    private void AddSquare()
+    {
+        Rectangle square = new()
+        {
+            Width = 100,
+            Height = 100
+        };
+        Canvas.SetTop(square, _currentMouseLocation.Y - square.Height / 2);
+        Canvas.SetLeft(square, _currentMouseLocation.X - square.Width / 2);
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        square.Stroke = brushColor;
+        PaintingSurface.Children.Add(square);
+    }
+
+    private void AddPentagon()
+    {
+        Polygon pentagon = new()
+        {
+            Points =
+            [
+                new Point(_currentMouseLocation.X, _currentMouseLocation.Y - 48),
+                new Point(_currentMouseLocation.X + 50, _currentMouseLocation.Y),
+                new Point(_currentMouseLocation.X + 25, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X - 25, _currentMouseLocation.Y + 50),
+                new Point(_currentMouseLocation.X - 50, _currentMouseLocation.Y)
+            ]
+        };
+        Brush brushColor = new SolidColorBrush(Colors.Black);
+        pentagon.Stroke = brushColor;
+        PaintingSurface.Children.Add(pentagon);
+    }
     #endregion
 
     private void RestartValues()
@@ -286,6 +335,5 @@ public partial class MainWindow : Window
         _startMouseLocation = null;
         MakeStraightLineBlack();
     }
-
 
 }

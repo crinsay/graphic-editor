@@ -132,7 +132,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="□ Square"
-                        Name="ButtonSquare"/>
+                        Name="ButtonSquare" Click="ButtonSquareClick"/>
             </Border>
             <Border Grid.Column="8"
                     Background="#f5f4f7"
@@ -143,7 +143,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="⬠ Pentagon"
-                        Name ="ButtonPentagon"/>
+                        Name ="ButtonPentagon" Click="ButtonPentagonClick"/>
             </Border>
             <Border Grid.Column="9"
                     Background="#f5f4f7"
