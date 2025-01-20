@@ -97,7 +97,7 @@
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
                         Content="𐰀 Poly line"
-                        Name="ButtonPolyLine"/>
+                        Name="ButtonPolyLine" Click="ButtonPolyLineClick"/>
             </Border>
             <Border Grid.Column="5"
                     Background="#f5f4f7"

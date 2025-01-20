@@ -11,7 +11,8 @@ enum DrawStyle
     Freestyle,
     Point,
     StraightLine,
-    EditStraightLine
+    EditStraightLine,
+    PolyLine,
 }
 public partial class MainWindow : Window
 {
@@ -47,6 +48,11 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.EditStraightLine;
         MakeStraightLinePurple();
+    }
+    private void ButtonPolyLineClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.PolyLine;
     }
     #endregion
 
@@ -88,6 +94,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.EditStraightLine:
                 EditStraightLine();
+                break;
+            case DrawStyle.PolyLine:
+                AddPolyLine();
                 break;
 
         }
@@ -200,6 +209,29 @@ public partial class MainWindow : Window
             _startMouseLocation = null;
         }
     }
+
+    private void AddPolyLine()
+    {
+        if (_startMouseLocation == null)
+        {
+            _startMouseLocation = _currentMouseLocation;
+        }
+        else
+        {
+            Brush brushColor = new SolidColorBrush(Colors.Black);
+            Line line = new()
+            {
+                Stroke = brushColor,
+                X1 = _startMouseLocation.Value.X,
+                Y1 = _startMouseLocation.Value.Y,
+                X2 = _currentMouseLocation.X,
+                Y2 = _currentMouseLocation.Y
+            };
+            _lines.Add(line);
+            PaintingSurface.Children.Add(line);
+            _startMouseLocation = _currentMouseLocation;
+        }
+    }
     #endregion
 
     private void RestartValues()
@@ -207,4 +239,5 @@ public partial class MainWindow : Window
         _startMouseLocation = null;
         MakeStraightLineBlack();
     }
+
 }
