@@ -48,6 +48,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
                     Background="#f5f4f7"
@@ -206,6 +207,19 @@
                         Content="Color"
                         Foreground="White" 
                         Click="ButtonColorPickerClick">
+                </Button>
+            </Border>
+            <Border Grid.Column="13"
+                    Background="White"
+                    CornerRadius="5"
+                    Margin="3">
+                <Button Background="Transparent"
+                        BorderThickness="0"
+                        FontFamily="Segoe UI Symbol"
+                        Name="ButtonEaser"
+                        Content="Eraser"
+                        Foreground="Black" 
+                        Click="ButtonEaserClick">
                 </Button>
             </Border>
             

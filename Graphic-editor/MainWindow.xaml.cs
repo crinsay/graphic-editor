@@ -30,7 +30,8 @@ enum DrawStyle
     Pentagon,
     Hexagon,
     Star,
-    Arrow
+    Arrow,
+    Eraser
 }
 public partial class MainWindow : Window
 {
@@ -170,6 +171,12 @@ public partial class MainWindow : Window
         AddSobelFilter();
         ImportFile(tempFileUri);
     }
+
+    private void ButtonEaserClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Eraser;
+    }
     #endregion
 
     #region MouseEvents
@@ -233,6 +240,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.Arrow:
                 AddArrow();
+                break;
+            case DrawStyle.Eraser:
+                Erase(sender, e);
                 break;
         }
     }
@@ -490,6 +500,20 @@ public partial class MainWindow : Window
         PaintingSurface.Children.Add(arrow);
     }
 
+    private void Erase(object sender, MouseButtonEventArgs e)
+    {
+        {
+            var clickedElement = e.Source as FrameworkElement;
+            if (clickedElement != null)
+            {
+                if (PaintingSurface.Children.Contains(clickedElement))
+                {
+                    PaintingSurface.Children.Remove(clickedElement);
+                }
+            }
+        }
+    }
+
     #endregion
 
     private void RestartValues()
@@ -510,7 +534,7 @@ public partial class MainWindow : Window
     private void ImportFile(Uri path)
     {
         if (path == null) return;
-        
+
         Image image = new();
         BitmapImage bitmapImage = new();
         bitmapImage.BeginInit();
@@ -574,5 +598,4 @@ public partial class MainWindow : Window
         }
     }
 
-    
 }
