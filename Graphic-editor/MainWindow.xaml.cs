@@ -14,6 +14,9 @@ using Color = System.Windows.Media.Color;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
 using Point = System.Windows.Point;
+using System.Drawing.Drawing2D;
+using Emgu.CV.CvEnum;
+using System.Windows.Media.Media3D;
 
 namespace Graphic_editor;
 
@@ -30,7 +33,8 @@ enum DrawStyle
     Pentagon,
     Hexagon,
     Star,
-    Arrow
+    Arrow,
+    Eraser
 }
 public partial class MainWindow : Window
 {
@@ -40,10 +44,14 @@ public partial class MainWindow : Window
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
     private Color _selectedColor = Color.FromRgb(0, 0, 0);
     private ColorPickerWindow? _colorPickerWindow;
+    private MatrixFilterWindow? _matrixFilterWindow;
+    private float[,] _customFilterMatrix = new float[3, 3];
 
     public delegate void ColorChangedHandler(Color newColor);
     public event ColorChangedHandler OnColorChanged = delegate { };
 
+    public delegate void MatrixFilterChosenHandler();
+    public event MatrixFilterChosenHandler MatrixOnColorChanged = delegate { };
 
 
     public MainWindow()
@@ -119,7 +127,7 @@ public partial class MainWindow : Window
         if (_colorPickerWindow == null || !_colorPickerWindow.IsLoaded)
         {
             _colorPickerWindow = new ColorPickerWindow(_selectedColor);
-            _colorPickerWindow.ColorUpdated += ColorPickerWindow_ColorUpdated; // Subskrypcja zdarzenia
+            _colorPickerWindow.ColorUpdated += ColorPickerWindow_ColorUpdated;
             _colorPickerWindow.Show();
         }
         else
@@ -167,8 +175,27 @@ public partial class MainWindow : Window
         AddSobelFilter();
         ImportFile(tempFileUri);
     }
-    #endregion
 
+    private void ButtonEaserClick(object sender, RoutedEventArgs e)
+    {
+        RestartValues();
+        _drawStyle = DrawStyle.Eraser;
+    }
+
+    private void ButtonMatrixClick(object sender, RoutedEventArgs e)
+    {
+        if (_matrixFilterWindow == null || !_matrixFilterWindow.IsLoaded)
+        {
+            _matrixFilterWindow = new MatrixFilterWindow();
+            _matrixFilterWindow.FilterMatrixConfirmed += OnFilterMatrixConfirmed;
+            _matrixFilterWindow.Show();
+        }
+        else
+        {
+            _matrixFilterWindow.Focus();
+        }
+    }
+    #endregion
 
     #region MouseEvents
     // --- Handling mouse events ---
@@ -231,6 +258,9 @@ public partial class MainWindow : Window
                 break;
             case DrawStyle.Arrow:
                 AddArrow();
+                break;
+            case DrawStyle.Eraser:
+                Erase(sender, e);
                 break;
         }
     }
@@ -488,6 +518,20 @@ public partial class MainWindow : Window
         PaintingSurface.Children.Add(arrow);
     }
 
+    private void Erase(object sender, MouseButtonEventArgs e)
+    {
+        {
+            var clickedElement = e.Source as FrameworkElement;
+            if (clickedElement != null)
+            {
+                if (PaintingSurface.Children.Contains(clickedElement))
+                {
+                    PaintingSurface.Children.Remove(clickedElement);
+                }
+            }
+        }
+    }
+
     #endregion
 
     private void RestartValues()
@@ -496,19 +540,32 @@ public partial class MainWindow : Window
         MakeStraightLineBlack();
     }
 
+    #region EventHandlers
+    // --- Event handlers ---
     private void ColorPickerWindow_ColorUpdated(Color newColor)
     {
         _selectedColor = newColor;
         BorderColorPicker.Background = new SolidColorBrush(newColor);
         ButtonColorPicker.Foreground = new SolidColorBrush(Color.FromRgb((byte)(255 - _selectedColor.R), (byte)(255 - _selectedColor.G), (byte)(255 - _selectedColor.B)));
     }
+    private void OnFilterMatrixConfirmed(float[,] filterMatrix)
+    {
+        _customFilterMatrix = filterMatrix;
+        var tempFileFullPath = Path.Combine(Directory.GetCurrentDirectory(), "MatrixFilterImage.jpg");
+        var tempFileUri = new Uri(tempFileFullPath);
+        SaveToFile(tempFileUri, PaintingSurface);
 
+        AddMatrixFilter(_customFilterMatrix);
+        ImportFile(tempFileUri);
+    }
+    #endregion
 
+    #region FileOperations
     // --- File operations ---
     private void ImportFile(Uri path)
     {
         if (path == null) return;
-        
+
         Image image = new();
         BitmapImage bitmapImage = new();
         bitmapImage.BeginInit();
@@ -547,8 +604,9 @@ public partial class MainWindow : Window
 
         surface.LayoutTransform = transform;
     }
+    #endregion
 
-
+    #region Filters
     // --- Filters ---
     private void AddSobelFilter()
     {
@@ -559,8 +617,27 @@ public partial class MainWindow : Window
         graySobelImage.Save("SobelFilterImage.jpg");
     }
 
-    private void ButtonMatrixClick(object sender, RoutedEventArgs e)
+   private void AddMatrixFilter(float[,] matrix)
     {
+        const string temporaryFile = "MatrixFilterImage.jpg";
+        var tempFileFullPath = Path.Combine(Directory.GetCurrentDirectory(), temporaryFile);
+        var tempFileUri = new Uri(tempFileFullPath);
+        SaveToFile(tempFileUri, PaintingSurface);
+
+        var image = new Image<Rgb, byte>(temporaryFile);
+        var kernel = new ConvolutionKernelF(matrix);
+        var dst = new Mat(image.Size, DepthType.Cv8U, 3);
+        var anchor = new System.Drawing.Point(-1, -1);
+        CvInvoke.Filter2D(image,
+                          dst,
+                          kernel,
+                          anchor);
+
+        dst.Save(temporaryFile);      
 
     }
+    #endregion
+
+
+
 }
