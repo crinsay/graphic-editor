@@ -33,7 +33,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix1" 
+            <TextBox x:Name="Matrix11" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -47,7 +47,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix2" 
+            <TextBox x:Name="Matrix21" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -61,7 +61,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix3" 
+            <TextBox x:Name="Matrix31" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -75,7 +75,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix4" 
+            <TextBox x:Name="Matrix12" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -89,7 +89,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix5" 
+            <TextBox x:Name="Matrix22" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -103,7 +103,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix6" 
+            <TextBox x:Name="Matrix32" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -117,7 +117,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix7" 
+            <TextBox x:Name="Matrix13" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -131,7 +131,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix8" 
+            <TextBox x:Name="Matrix23" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
@@ -145,7 +145,7 @@
                 Background="White"
                 CornerRadius="5"
                 Margin="3">
-            <TextBox x:Name="Matrix9" 
+            <TextBox x:Name="Matrix33" 
                      Text="1"
                      HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center"
