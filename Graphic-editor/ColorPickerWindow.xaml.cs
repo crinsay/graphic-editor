@@ -28,7 +28,10 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    // --- Bindings ---
+
+
+    #region Bindings with walidation
+    // --- Bindings --- 
     private string _r = string.Empty;
     public string R
     {
@@ -85,19 +88,18 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
                 OnPropertyChanged();
             }
         }
-    }
-
+    } 
     // --- Validation ---
     private void TextBoxRGB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
     {
-        var textBox = sender as TextBox;
-        if (textBox != null)
+        if (sender is TextBox textBox)
         {
             string inputText = textBox.Text + e.Text;
             e.Handled = IsCorrect(inputText);
         }
     }
     private static bool IsCorrect(string text) => !(text.All(char.IsDigit) && int.Parse(text) <= 255);
+    #endregion
 
 
 
@@ -115,6 +117,7 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
         UpdateBorderColor();
     }
 
+    #region Event handlers
     // --- Event handlers ---
     private void ButtonCancelClick(object sender, RoutedEventArgs e)
     {
@@ -126,7 +129,11 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
         ColorUpdated?.Invoke(_currentColor);
         this.Close();
     }
+    #endregion
 
+
+
+    #region Methods for HSV
     // --- Methods ---
     private void UpdateBorderColor()
     {
@@ -172,4 +179,5 @@ public partial class ColorPickerWindow : Window, INotifyPropertyChanged
         TextBoxS.Text = s.ToString();
         TextBoxV.Text = v.ToString();
     }
+    #endregion
 }

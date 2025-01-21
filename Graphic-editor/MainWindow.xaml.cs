@@ -15,8 +15,8 @@ using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
 using Point = System.Windows.Point;
 
-namespace Graphic_editor;
 
+namespace Graphic_editor;
 enum DrawStyle
 {
     Freestyle,
@@ -33,28 +33,42 @@ enum DrawStyle
     Arrow,
     Eraser
 }
+
+
 public partial class MainWindow : Window
 {
-    private Point _currentMouseLocation;
-    private Point? _startMouseLocation = null;
-    private List<Line> _lines = new();
+    #region Fields
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
     private Color _selectedColor = Color.FromRgb(0, 0, 0);
+
+    private Point _currentMouseLocation;
+    private Point? _startMouseLocation = null;
+
     private ColorPickerWindow? _colorPickerWindow;
     private MatrixFilterWindow? _matrixFilterWindow;
-    private float[,] _customFilterMatrix = new float[3, 3];
 
+    private readonly List<Line> _lines = [];
+    private float[,] _customFilterMatrix = new float[3, 3];
+    #endregion
+
+
+
+    #region Events
     public delegate void ColorChangedHandler(Color newColor);
     public event ColorChangedHandler OnColorChanged = delegate { };
 
     public delegate void MatrixFilterChosenHandler();
     public event MatrixFilterChosenHandler MatrixOnColorChanged = delegate { };
+    #endregion
+
 
 
     public MainWindow()
     {
         InitializeComponent();
     }
+
+
 
     #region ButtonClicks
     // --- Handling Clicks ---
@@ -132,7 +146,6 @@ public partial class MainWindow : Window
             _colorPickerWindow.Focus();
         }
     }
-
     private void ButtonSaveAsClick(object sender, RoutedEventArgs e)
     {
         SaveFileDialog saveFileDialog = new()
@@ -147,7 +160,6 @@ public partial class MainWindow : Window
             SaveToFile(newFileUri, PaintingSurface);
         }
     }
-
     private void ButtonImportFileClick(object sender, RoutedEventArgs e)
     {
         OpenFileDialog openFileDialog = new()
@@ -162,7 +174,6 @@ public partial class MainWindow : Window
             ImportFile(fileUri);
         }
     }
-
     private void ButtonSobelClick(object sender, RoutedEventArgs e)
     {
 
@@ -180,7 +191,6 @@ public partial class MainWindow : Window
         RestartValues();
         _drawStyle = DrawStyle.Eraser;
     }
-
     private void ButtonMatrixClick(object sender, RoutedEventArgs e)
     {
         if (_matrixFilterWindow == null || !_matrixFilterWindow.IsLoaded)
@@ -195,6 +205,8 @@ public partial class MainWindow : Window
         }
     }
     #endregion
+
+
 
     #region MouseEvents
     // --- Handling mouse events ---
@@ -274,6 +286,8 @@ public partial class MainWindow : Window
 
     }
     #endregion
+
+
 
     #region Drawing
     // --- Drawing methods ---
@@ -532,11 +546,7 @@ public partial class MainWindow : Window
 
     #endregion
 
-    private void RestartValues()
-    {
-        _startMouseLocation = null;
-        MakeStraightLineBlack();
-    }
+
 
     #region EventHandlers
     // --- Event handlers ---
@@ -557,6 +567,8 @@ public partial class MainWindow : Window
         ImportFile(tempFileUri);
     }
     #endregion
+
+
 
     #region FileOperations
     // --- File operations ---
@@ -593,7 +605,7 @@ public partial class MainWindow : Window
         surface.Measure(size);
         surface.Arrange(new Rect(size));
 
-        RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(
+        RenderTargetBitmap renderTargetBitmap = new(
             (int)size.Width,
             (int)size.Height,
             96d,
@@ -612,6 +624,8 @@ public partial class MainWindow : Window
         surface.LayoutTransform = transform;
     }
     #endregion
+
+
 
     #region Filters
     // --- Filters ---
@@ -639,9 +653,20 @@ public partial class MainWindow : Window
                           dst,
                           kernel,
                           anchor);
-
         dst.Save(temporaryFile);
 
+    }
+
+    #endregion
+
+
+
+    #region HelperMethods
+    // --- Helper methods ---
+    private void RestartValues()
+    {
+        _startMouseLocation = null;
+        MakeStraightLineBlack();
     }
 
     private void ResizeWindow()
@@ -654,7 +679,4 @@ public partial class MainWindow : Window
         this.Height = currentHeight;
     }
     #endregion
-
-
-
 }
