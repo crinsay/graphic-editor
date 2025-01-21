@@ -1,5 +1,6 @@
-﻿using Emgu.CV.Reg;
-using Emgu.CV;
+﻿using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows;
@@ -8,15 +9,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Emgu.CV.Structure;
-using Ellipse = System.Windows.Shapes.Ellipse;
 using Color = System.Windows.Media.Color;
+using Ellipse = System.Windows.Shapes.Ellipse;
 using Image = System.Windows.Controls.Image;
 using Path = System.IO.Path;
 using Point = System.Windows.Point;
-using System.Drawing.Drawing2D;
-using Emgu.CV.CvEnum;
-using System.Windows.Media.Media3D;
 
 namespace Graphic_editor;
 
@@ -146,7 +143,7 @@ public partial class MainWindow : Window
 
         if (saveFileDialog.ShowDialog() == true)
         {
-            Uri newFileUri = new Uri(saveFileDialog.FileName);
+            Uri newFileUri = new(saveFileDialog.FileName);
             SaveToFile(newFileUri, PaintingSurface);
         }
     }
@@ -168,11 +165,13 @@ public partial class MainWindow : Window
 
     private void ButtonSobelClick(object sender, RoutedEventArgs e)
     {
+
         var tempFileFullPath = Path.Combine(Directory.GetCurrentDirectory(), "SobelFilterImage.jpg");
         var tempFileUri = new Uri(tempFileFullPath);
         SaveToFile(tempFileUri, PaintingSurface);
 
         AddSobelFilter();
+
         ImportFile(tempFileUri);
     }
 
@@ -521,8 +520,7 @@ public partial class MainWindow : Window
     private void Erase(object sender, MouseButtonEventArgs e)
     {
         {
-            var clickedElement = e.Source as FrameworkElement;
-            if (clickedElement != null)
+            if (e.Source is FrameworkElement clickedElement)
             {
                 if (PaintingSurface.Children.Contains(clickedElement))
                 {
@@ -566,17 +564,26 @@ public partial class MainWindow : Window
     {
         if (path == null) return;
 
-        Image image = new();
-        BitmapImage bitmapImage = new();
-        bitmapImage.BeginInit();
-        bitmapImage.UriSource = path;
-        bitmapImage.EndInit();
-        image.Source = bitmapImage;
+        var bitmapImage = new BitmapImage();
+        using (var fileStream = new FileStream(path.LocalPath, FileMode.Open, FileAccess.Read))
+        {
+            bitmapImage.BeginInit();
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.StreamSource = fileStream;
+            bitmapImage.EndInit();
+        }
+
+        var image = new Image
+        {
+            Source = bitmapImage
+        };
+
         PaintingSurface.Children.Add(image);
+        ResizeWindow();
     }
 
 
-    private void SaveToFile(Uri path, Canvas surface)
+    private static void SaveToFile(Uri path, Canvas surface)
     {
         if (path == null) return;
 
@@ -608,7 +615,7 @@ public partial class MainWindow : Window
 
     #region Filters
     // --- Filters ---
-    private void AddSobelFilter()
+    private static void AddSobelFilter()
     {
         const string temporaryFile = "SobelFilterImage.jpg";
         var image = new Image<Rgb, byte>(temporaryFile);
@@ -617,7 +624,7 @@ public partial class MainWindow : Window
         graySobelImage.Save("SobelFilterImage.jpg");
     }
 
-   private void AddMatrixFilter(float[,] matrix)
+    private void AddMatrixFilter(float[,] matrix)
     {
         const string temporaryFile = "MatrixFilterImage.jpg";
         var tempFileFullPath = Path.Combine(Directory.GetCurrentDirectory(), temporaryFile);
@@ -633,8 +640,18 @@ public partial class MainWindow : Window
                           kernel,
                           anchor);
 
-        dst.Save(temporaryFile);      
+        dst.Save(temporaryFile);
 
+    }
+
+    private void ResizeWindow()
+    {
+        var currentWidth = this.Width;
+        var currentHeight = this.Height;
+        this.Width = currentWidth + 1;
+        this.Height = currentHeight + 1;
+        this.Width = currentWidth;
+        this.Height = currentHeight;
     }
     #endregion
 
