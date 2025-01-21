@@ -40,10 +40,13 @@ public partial class MainWindow : Window
     private DrawStyle _drawStyle = DrawStyle.Freestyle;
     private Color _selectedColor = Color.FromRgb(0, 0, 0);
     private ColorPickerWindow? _colorPickerWindow;
+    private MatrixFilterWindow? _matrixFilterWindow;
 
     public delegate void ColorChangedHandler(Color newColor);
     public event ColorChangedHandler OnColorChanged = delegate { };
 
+    public delegate void MatrixFilterChosenHandler();
+    public event MatrixFilterChosenHandler MatrixOnColorChanged = delegate { };
 
 
     public MainWindow()
@@ -168,7 +171,6 @@ public partial class MainWindow : Window
         ImportFile(tempFileUri);
     }
     #endregion
-
 
     #region MouseEvents
     // --- Handling mouse events ---
@@ -561,6 +563,16 @@ public partial class MainWindow : Window
 
     private void ButtonMatrixClick(object sender, RoutedEventArgs e)
     {
-
+        if (_matrixFilterWindow == null || !_matrixFilterWindow.IsLoaded)
+        {
+            _matrixFilterWindow = new MatrixFilterWindow();
+            _matrixFilterWindow.Show();
+        }
+        else
+        {
+            _matrixFilterWindow.Focus();
+        }
     }
+
+    
 }
