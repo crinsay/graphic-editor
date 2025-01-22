@@ -5,44 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graphic_editor"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="800" MinWidth="1200">
+        Title="Graphic editor" MinHeight="800" MinWidth="1200">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="20px"/>
-            <RowDefinition MaxHeight="40px"/>
+            <RowDefinition MaxHeight="18px"/>
+            <RowDefinition MaxHeight="40px" Height="1.1*"/>
             <RowDefinition Height = "20*"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Background="#e9e8eb">
+        <Canvas Grid.Row="2"
+                Name="PaintingSurface" 
+                MouseMove="PaintingSurfaceMouseMove" 
+                MouseLeftButtonDown="PaintingSurfaceMouseLeftButtonDown" 
+                MouseDown="PaintingSurfaceMouseDown">
+            <Canvas.Background>
+                <SolidColorBrush Color="White"
+                                 Opacity="1"/>
+            </Canvas.Background>
+        </Canvas>
+        <Menu Grid.Row="0" Background="#e4e9fe">
             <MenuItem Header="File"
-                      Background="Azure"
-                      >
+                      Background="#d6e1ff">
                 <MenuItem Header="Save as..."
                           Name="ButtonSaveAs" 
-                          Click="ButtonSaveAsClick"/>
+                          Click="ButtonSaveAsClick"
+                          Background="#d6e1ff"/>
                 <MenuItem Header="Import..."
                           Name="ButtonImportFile" 
-                          Click="ButtonImportFileClick"/>
+                          Click="ButtonImportFileClick"
+                          Background="#d6e1ff"/>
             </MenuItem>
-            <MenuItem Header="Filters">
+            <MenuItem Header="Filters"
+                      Background="#d6e1ff">
                 <MenuItem Header="Sobel"
                           Name="ButtonSobel"
-                          Click="ButtonSobelClick"/>
+                          Click="ButtonSobelClick"
+                          Background="#d6e1ff"/>
                 <MenuItem Header="Matrix"
                           Name="ButtonMatrix"
-                          Click="ButtonMatrixClick"/>
+                          Click="ButtonMatrixClick"
+                          Background="#d6e1ff"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"
-              Background="#e9e8eb">
+              Background="#d6e1ff">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>                
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>                
+                <ColumnDefinition/>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -51,9 +65,17 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="0"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -63,9 +85,17 @@
                         Click="ButtonBrushClick"/>
             </Border>
             <Border Grid.Column="1"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="1"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -75,9 +105,17 @@
                         Click="ButtonPointClick"/>
             </Border>
             <Border Grid.Column="2"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="2"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -87,9 +125,17 @@
                         Click="ButtonStraightLineClick"/>
             </Border>
             <Border Grid.Column="3"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="3"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -99,9 +145,17 @@
                         Click="ButtonEditStraightLineClick"/>
             </Border>
             <Border Grid.Column="4"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="4"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -111,9 +165,17 @@
                         Click="ButtonPolyLineClick"/>
             </Border>
             <Border Grid.Column="5"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="5"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -123,9 +185,17 @@
                         Click="ButtonCircleClick"/>
             </Border>
             <Border Grid.Column="6"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="6"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -135,9 +205,17 @@
                         Click="ButtonTriangleClick"/>
             </Border>
             <Border Grid.Column="7"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="7"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -147,9 +225,17 @@
                         Click="ButtonSquareClick"/>
             </Border>
             <Border Grid.Column="8"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="8"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -159,9 +245,17 @@
                         Click="ButtonPentagonClick"/>
             </Border>
             <Border Grid.Column="9"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="9"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -171,9 +265,17 @@
                         Click="ButtonHexagonClick"/>
             </Border>
             <Border Grid.Column="10"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="10"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -183,9 +285,17 @@
                         Click="ButtonStarClick"/>
             </Border>
             <Border Grid.Column="11"
-                    Background="#f5f4f7"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="11"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Grid.Column="0"
                         Background="Transparent"
                         BorderThickness="0"
@@ -195,9 +305,17 @@
                         Click="ButtonArrowClick"/>
             </Border>
             <Border Grid.Column="12"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="12"
                     Background="Black"
                     CornerRadius="5"
-                    Margin="3"
+                    Margin="5,6"
                     Name="BorderColorPicker">
                 <Button Grid.Column="0"
                         Background="Transparent"
@@ -210,29 +328,26 @@
                 </Button>
             </Border>
             <Border Grid.Column="13"
-                    Background="White"
+                    CornerRadius="6"
+                    Background="#ADC3FF"
+                    Margin="5,6">
+                <Border.Effect>
+                    <BlurEffect Radius="5"/>
+                </Border.Effect>
+            </Border>
+            <Border Grid.Column="13"
+                    Background="#D6E1FF"
                     CornerRadius="5"
-                    Margin="3">
+                    Margin="5,6">
                 <Button Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Name="ButtonEaser"
+                        Name="ButtonEraser"
                         Content="Eraser"
                         Foreground="Black" 
-                        Click="ButtonEaserClick">
+                        Click="ButtonEraserClick">
                 </Button>
             </Border>
-            
         </Grid>
-        <Canvas Grid.Row="2"
-                Name="PaintingSurface" 
-                MouseMove="PaintingSurfaceMouseMove" 
-                MouseLeftButtonDown="PaintingSurfaceMouseLeftButtonDown" 
-                MouseDown="PaintingSurfaceMouseDown">
-            <Canvas.Background>
-                <SolidColorBrush Color="White"
-                                 Opacity="1"/>
-            </Canvas.Background>
-        </Canvas>
     </Grid>
 </Window>

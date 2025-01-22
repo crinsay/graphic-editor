@@ -32,7 +32,7 @@ namespace Graphic_editor
             Close();
         }
 
-        private float GetMatrixValue(TextBox textBox)
+        private static float GetMatrixValue(TextBox textBox)
         {
             if (float.TryParse(textBox.Text, out float value))
             {
@@ -43,7 +43,7 @@ namespace Graphic_editor
 
         private void TextBoxMatrix_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            var textBox = sender as TextBox;
+            TextBox? textBox = sender as TextBox;
             if (textBox != null && textBox.Text.Length == 0)
                 e.Handled = !(e.Text.All(char.IsDigit) || e.Text == "-");
             else
