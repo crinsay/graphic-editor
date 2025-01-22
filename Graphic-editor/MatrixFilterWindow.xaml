@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graphic_editor"
         mc:Ignorable="d"
-        Title="Set matrix filter values" Height="200" Width="200"
+        Title="Set matrix filter values" 
+        Height="200" 
+        Width="200"
+        ResizeMode="NoResize"
         Background="#edf2fe">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,7 +30,7 @@
                Grid.ColumnSpan="3"
                Content="Fill boxes"
                FontWeight="Bold"
-               FontSize="20"
+               FontSize="18"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"/>
         <Border Grid.Column="1"
