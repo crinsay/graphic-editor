@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graphic_editor"
         mc:Ignorable="d"
-        Title="MatrixFilterWindow" Height="200" Width="200"
-        Background="Beige">
+        Title="Set matrix filter values" Height="200" Width="200"
+        Background="#edf2fe">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,11 +26,23 @@
                Grid.Column="1"
                Grid.ColumnSpan="3"
                Content="Fill boxes"
+               FontWeight="Bold"
+               FontSize="20"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"/>
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="1"
                 Grid.Column="1"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix11" 
@@ -42,9 +54,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="1"
+                Grid.Row="2"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="2"
                 Grid.Column="1"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix21" 
@@ -56,9 +78,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="1"
+                Grid.Row="3"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="3"
                 Grid.Column="1"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix31" 
@@ -70,9 +102,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="2"
+                Grid.Row="1"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="1"
                 Grid.Column="2"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix12" 
@@ -84,9 +126,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="2"
+                Grid.Row="2"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="2"
                 Grid.Column="2"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix22" 
@@ -98,9 +150,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="2"
+                Grid.Row="3"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="3"
                 Grid.Column="2"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix32" 
@@ -112,9 +174,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="3"
+                Grid.Row="1"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="1"
                 Grid.Column="3"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix13" 
@@ -126,9 +198,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="3"
+                Grid.Row="2"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="2"
                 Grid.Column="3"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix23" 
@@ -140,9 +222,19 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+        <Border Grid.Column="3"
+                Grid.Row="3"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="1"
+                Margin="3">
+            <Border.Effect>
+                <BlurEffect Radius="4"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="3"
                 Grid.Column="3"
-                Background="White"
+                Background="#D6E1FF"
                 CornerRadius="5"
                 Margin="3">
             <TextBox x:Name="Matrix33" 
@@ -154,11 +246,22 @@
                      PreviewTextInput="TextBoxMatrix_PreviewTextInput"
                      MaxLength="3"/>
         </Border>
+
+        <Border Grid.Column="2"
+                Grid.Row="4"
+                CornerRadius="6"
+                Background="#ADC3FF"
+                Opacity="0.8"
+                Margin="-10,5">
+            <Border.Effect>
+                <BlurEffect Radius="5"/>
+            </Border.Effect>
+        </Border>
         <Border Grid.Row="4"
                 Grid.Column="2"
-                Background="White"
+                Background="#c2d2ff"
                 CornerRadius="5"
-                Margin="-10,3">
+                Margin="-10,5">
             <Button x:Name="ButtonApply"
                     Content="Apply"
                     Click="ButtonApplyClick"

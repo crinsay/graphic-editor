@@ -66,6 +66,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        ButtonBrush.Background = new SolidColorBrush(Color.FromRgb(194, 210, 255));
     }
 
 

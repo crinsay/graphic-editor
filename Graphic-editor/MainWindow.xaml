@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graphic_editor"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="800" MinWidth="1200">
+        Title="Graphic editor" MinHeight="800" MinWidth="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="18px"/>
@@ -67,9 +67,9 @@
             <Border Grid.Column="0"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="6"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="0"
@@ -87,9 +87,9 @@
             <Border Grid.Column="1"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="1"
@@ -107,9 +107,9 @@
             <Border Grid.Column="2"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="2"
@@ -127,9 +127,9 @@
             <Border Grid.Column="3"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="3"
@@ -147,9 +147,9 @@
             <Border Grid.Column="4"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="4"
@@ -167,9 +167,9 @@
             <Border Grid.Column="5"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="5"
@@ -187,9 +187,9 @@
             <Border Grid.Column="6"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="6"
@@ -207,9 +207,9 @@
             <Border Grid.Column="7"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="7"
@@ -227,9 +227,9 @@
             <Border Grid.Column="8"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="8"
@@ -247,9 +247,9 @@
             <Border Grid.Column="9"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="9"
@@ -267,9 +267,9 @@
             <Border Grid.Column="10"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="10"
@@ -287,9 +287,9 @@
             <Border Grid.Column="11"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="11"
@@ -307,9 +307,9 @@
             <Border Grid.Column="12"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="12"
@@ -330,9 +330,9 @@
             <Border Grid.Column="13"
                     CornerRadius="6"
                     Background="#ADC3FF"
-                    Margin="4">
+                    Margin="5,6">
                 <Border.Effect>
-                    <BlurEffect Radius="10"/>
+                    <BlurEffect Radius="5"/>
                 </Border.Effect>
             </Border>
             <Border Grid.Column="13"
