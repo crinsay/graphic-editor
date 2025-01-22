@@ -22,32 +22,32 @@
                                  Opacity="1"/>
             </Canvas.Background>
         </Canvas>
-        <Menu Grid.Row="0" Background="#e4e9fe">
+        <Menu Grid.Row="0" Background="#edf2fe">
             <MenuItem Header="File"
-                      Background="#d6e1ff">
+                      Background="#e4e9fe">
                 <MenuItem Header="Save as..."
                           Name="ButtonSaveAs" 
                           Click="ButtonSaveAsClick"
-                          Background="#d6e1ff"/>
+                          Background="#e4e9fe"/>
                 <MenuItem Header="Import..."
                           Name="ButtonImportFile" 
                           Click="ButtonImportFileClick"
-                          Background="#d6e1ff"/>
+                          Background="#e4e9fe"/>
             </MenuItem>
             <MenuItem Header="Filters"
-                      Background="#d6e1ff">
+                      Background="#e4e9fe">
                 <MenuItem Header="Sobel"
                           Name="ButtonSobel"
                           Click="ButtonSobelClick"
-                          Background="#d6e1ff"/>
+                          Background="#e4e9fe"/>
                 <MenuItem Header="Matrix"
                           Name="ButtonMatrix"
                           Click="ButtonMatrixClick"
-                          Background="#d6e1ff"/>
+                          Background="#e4e9fe"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"
-              Background="#d6e1ff">
+              Background="#e4e9fe">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -76,7 +76,7 @@
                     Background="#D6E1FF"
                     CornerRadius="5"
                     Margin="5,6">
-                <Button Grid.Column="0"
+                <Button 
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
@@ -280,7 +280,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         FontFamily="Segoe UI Symbol"
-                        Content="✰ Star"
+                        Content="☆ Star"
                         Name="ButtonStar" 
                         Click="ButtonStarClick"/>
             </Border>
@@ -336,7 +336,7 @@
                 </Border.Effect>
             </Border>
             <Border Grid.Column="13"
-                    Background="#D6E1FF"
+                    Background="White"
                     CornerRadius="5"
                     Margin="5,6">
                 <Button Background="Transparent"
