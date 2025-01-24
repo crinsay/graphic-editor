@@ -233,13 +233,13 @@ public partial class MainWindow : Window
         }
         else if (e.LeftButton == MouseButtonState.Pressed && _drawStyle == DrawStyle.Eraser)
         {
-                    if (e.Source is FrameworkElement clickedElement)
-        {
-            if (PaintingSurface.Children.Contains(clickedElement))
+            if (e.Source is FrameworkElement clickedElement)
             {
-                PaintingSurface.Children.Remove(clickedElement);
+                if (PaintingSurface.Children.Contains(clickedElement))
+                {
+                    PaintingSurface.Children.Remove(clickedElement);
+                }
             }
-        }
         }
         else
             _currentMouseLocation = e.GetPosition(PaintingSurface);
@@ -710,12 +710,20 @@ public partial class MainWindow : Window
 
     private void ResizeWindow()
     {
-        var currentWidth = this.Width;
-        var currentHeight = this.Height;
-        this.Width = currentWidth + 1;
-        this.Height = currentHeight + 1;
-        this.Width = currentWidth;
-        this.Height = currentHeight;
+        if (WindowState == WindowState.Maximized)
+        {
+            WindowState = WindowState.Normal;
+            WindowState = WindowState.Maximized;
+        }
+        else
+        {
+            var currentWidth = this.Width;
+            var currentHeight = this.Height;
+            this.Width = currentWidth - 1;
+            this.Height = currentHeight - 1;
+            this.Width = currentWidth;
+            this.Height = currentHeight;
+        }
     }
     #endregion
 }
